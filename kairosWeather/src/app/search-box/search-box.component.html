@@ -1,0 +1,15 @@
+<div id="cover">
+  <form>
+    <div class="tb">
+      <div class="td">
+        <input type="text" name="cityName" [(ngModel)]="cityName" placeholder="Buscar" required>
+      </div>
+      <div class="td" id="s-cover">
+        <button type="submit" (click)="searchCity()">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

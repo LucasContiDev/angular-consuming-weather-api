@@ -1,0 +1,17 @@
+<main>  
+    <div class="device" *ngIf="_data.getWeatherTemp()">
+      <section>
+        <div class="weather time-morning active">
+          <div class="icon">
+            <i class="sun"></i>
+          </div>
+          <div class="content">
+            <h3>{{_data.getWeatherCity()}}</h3>
+            <div class="degrees">{{_data.getWeatherTemp()}}</div>
+            <div class="data">          
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>

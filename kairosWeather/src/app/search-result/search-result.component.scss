@@ -1,0 +1,144 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+$device-width: 250px * 1.5;
+$device-height: 180px * 1.5;
+
+$color-white: #ffffff;
+$color-black: #000000;
+
+@font-face {
+  font-family: 'weathericons';
+  src: url('//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/fonts/weathericons-regular-webfont.eot');
+  src: url('//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/fonts/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/fonts/weathericons-regular-webfont.woff') format('woff'), url('//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/fonts/weathericons-regular-webfont.ttf') format('truetype'), url('//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/fonts/weathericons-regular-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  color: $color-black;
+}
+
+* {
+  position: relative;
+}
+
+
+aside, main {
+  padding: 1rem;
+}
+
+
+.device {
+  margin-right: auto;
+  margin-left: auto;
+  height: $device-height;
+  background-color: #171717;
+  box-shadow: 0 0 50px 10px rgba(0,0,0,0.4);
+  section {
+    height: calc(100% - 50px);
+    width: 100%;
+    overflow: hidden;
+    background-color: $color-white;
+  }
+}
+
+.weather {
+  @extend %transition;
+  
+  &:hover, .device &:first-child {
+    height: 100%;
+
+    .icon {    
+      transform: translateY(0);
+      z-index: 1;
+    }
+    
+    + .weather .icon {
+      transform: translateY(-$device-height / 2);
+    }
+    
+    ~ .weather .icon {
+      z-index: -1;
+    }
+    
+  }
+  
+  .content {
+    right: 0;
+    width: 55%;
+    position: absolute;
+    color: $color-black;
+    
+    @at-root .meta, & {
+      font-family: 'Lato', sans-serif;
+    }
+  }
+  
+  h3 {
+    text-transform: uppercase;
+    color: $color-black;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;    
+    font-weight: 400;
+    color: $color-black;
+
+  }
+  
+  .degrees {
+    font-size: 2.7rem;
+    font-weight: 300;
+    color: $color-black;
+    line-height: 1;
+    
+    &:after { content: '\00b0'; }
+  }
+}
+
+.icon {
+  z-index: -1;
+  @extend %transition;
+  font-family: 'weathericons';
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: percentage(1/2);
+  height: 50px;
+  transform: translateY($device-height / 6);
+
+  i {
+    font-style: normal;
+    position: absolute;
+  }
+}
+
+.sun {
+  @at-root .moon, & {    
+    left: 5px;
+    font-size: 6rem;
+  }
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  
+  &:before {
+    content: "\f00d";
+  }
+}
+
+%transition {
+  transition: all 0.7s ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
